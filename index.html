@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hervé Dipari · Officiant Humour</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* VOICE: chaleureux, élégant, avec le sourire. On présente un artiste à un lieu.
+   IDEA: le livret de cérémonie — chaque section est un temps fort de la cérémonie.
+   PICTURE: les vraies photos de cérémonie ; Hervé face à 120 invités en ouverture.
+   COLOUR and TYPE: noir laqué et or du logo, papier ivoire ; Cinzel (le logo), Cormorant, Manrope.
+   LAYOUT: bandes pleine largeur alternant ivoire et noir, photos en grand, une seule action : contacter Officiant Humour. */
+:root{color-scheme:light;--paper:#f8f4ec;--paper2:#efe7d8;--ink:#17130f;--soft:#5d544a;--gold:#b8872f;--gold2:#e2b65c;--night:#0f0d0b;--line:rgba(23,19,15,.14)}
+*{box-sizing:border-box;min-width:0}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;background:var(--paper);color:var(--ink);font:16.5px/1.6 Manrope,system-ui,sans-serif;overflow-x:clip}
+img{display:block;max-width:100%}
+a{color:inherit}
+.wrap{max-width:1240px;margin:0 auto}
+.band{padding:clamp(56px,8vw,112px) max(5vw,18px)}
+.dark{background:var(--night);color:#f3ece0}
+.dark .soft{color:#bfb3a2}
+.soft{color:var(--soft)}
+h1,h2,h3{font-family:"Cormorant Garamond",Georgia,serif;font-weight:600;line-height:1.05;margin:0;text-wrap:balance}
+h1{font-size:clamp(40px,6.2vw,76px)}
+h2{font-size:clamp(34px,4.4vw,52px)}
+h3{font-size:26px;line-height:1.15}
+em{font-style:italic;color:var(--gold)}
+.dark em{color:var(--gold2)}
+.kicker{max-width:none;font-family:Cinzel,serif;font-size:14px;color:var(--gold);margin:0 0 14px;display:flex;align-items:center;gap:12px}
+.kicker::after{content:"";height:1px;width:56px;background:currentColor;opacity:.6}
+.dark .kicker{color:var(--gold2)}
+p{margin:0 0 1em;max-width:62ch}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:50px;padding:0 26px;border-radius:999px;font-weight:700;font-size:16px;text-decoration:none;border:1px solid transparent;transition:transform .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn.gold{background:linear-gradient(180deg,#e7bf68,#b8872f);color:#1a1208;box-shadow:0 10px 30px -12px rgba(184,135,47,.9)}
+.btn.ghost{border-color:currentColor}
+:focus-visible{outline:3px solid var(--gold2);outline-offset:3px}
+
+/* barre haute */
+.top{position:sticky;top:0;z-index:20;background:rgba(248,244,236,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:8px max(5vw,18px)}
+.top img{height:52px;width:auto}
+.top nav{display:flex;gap:26px;font-size:15px;font-weight:500}
+.top nav a{text-decoration:none}.top nav a:hover{color:var(--gold)}
+.top .btn{min-height:44px;padding:0 20px;font-size:15px}
+
+/* ouverture */
+.hero{position:relative;overflow:hidden;min-height:min(88vh,860px);display:flex;align-items:flex-end;color:#fff;background:#000}
+.hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%;animation:zoom 18s ease-out both}
+@keyframes zoom{from{transform:scale(1.08)}to{transform:scale(1)}}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,8,6,.35) 0%,rgba(10,8,6,.55) 45%,rgba(10,8,6,.92) 100%),linear-gradient(90deg,rgba(10,8,6,.6),transparent 70%)}
+.hero .wrap{position:relative;z-index:1;width:100%;padding:0 max(5vw,18px) clamp(40px,6vw,80px)}
+.hero h1{max-width:15ch;color:#fff;text-shadow:0 2px 24px rgba(0,0,0,.55)}
+.hero h1 em{color:#f0c66b}
+.hero .kicker{font-weight:600}
+.hero .lead{font-size:clamp(17px,1.6vw,20px);max-width:52ch;margin:22px 0 30px;color:#fff;text-shadow:0 1px 14px rgba(0,0,0,.7)}
+.hero .kicker{color:var(--gold2)}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+
+/* chiffres */
+.facts{background:var(--night);color:#f3ece0;border-top:1px solid rgba(226,182,92,.3)}
+.facts .wrap{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));padding:0 max(5vw,18px)}
+.facts div{padding:28px 18px;border-left:1px solid rgba(226,182,92,.22);text-align:center}
+.facts div:first-child{border-left:0}
+.facts b{display:block;font-family:"Cormorant Garamond",serif;font-size:clamp(34px,4vw,48px);line-height:1;color:var(--gold2);font-weight:600;white-space:nowrap}
+.facts span{font-size:14px;color:#cbbfae}
+
+/* pour les lieux */
+.intro{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(32px,6vw,90px);align-items:center}
+.intro ul{list-style:none;padding:0;margin:26px 0 0;display:grid;gap:14px}
+.intro li{display:grid;grid-template-columns:28px 1fr;gap:12px;align-items:start}
+.intro li svg{margin-top:4px}
+.stack2{position:relative;aspect-ratio:4/4.4}
+.stack2 img{position:absolute;object-fit:cover;border-radius:6px;box-shadow:0 30px 60px -30px rgba(0,0,0,.55)}
+.stack2 .a{width:72%;height:78%;left:0;top:0}
+.stack2 .b{width:52%;height:56%;right:0;bottom:0;border:8px solid var(--paper)}
+
+/* portrait */
+.who{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(32px,6vw,90px);align-items:center}
+.portrait{position:relative}
+.portrait img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:200px 200px 6px 6px}
+.portrait figcaption{position:absolute;left:50%;bottom:-22px;transform:translateX(-50%);background:var(--gold2);color:#1a1208;font-family:Cinzel,serif;font-size:14px;padding:10px 20px;border-radius:999px;white-space:nowrap}
+.who blockquote{margin:28px 0 0;padding:22px 0 0;border-top:1px solid rgba(226,182,92,.3);font-family:"Cormorant Garamond",serif;font-style:italic;font-size:26px;line-height:1.3;color:#f3ece0}
+.duo{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:30px}
+.duo div{border:1px solid rgba(226,182,92,.28);border-radius:6px;padding:16px}
+.duo b{display:block;color:var(--gold2);font-family:Cinzel,serif;font-size:14px;margin-bottom:4px}
+.duo span{font-size:14.5px;color:#cbbfae}
+
+/* vidéo */
+.filmgrid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(32px,6vw,90px);align-items:center}
+.vlist{list-style:none;padding:0;margin:26px 0 30px;display:grid;gap:16px}
+.vlist li{padding-left:18px;border-left:2px solid var(--gold)}
+.vlist b{display:block;font-family:"Cormorant Garamond",serif;font-size:22px;line-height:1.2}
+.vlist span{font-size:15px;color:var(--soft)}
+.phone{justify-self:center;width:min(100%,380px)}
+.phone video{display:block;width:100%;aspect-ratio:9/16;object-fit:cover;background:#000;border-radius:28px;border:8px solid var(--night);box-shadow:0 0 0 1px rgba(184,135,47,.5),0 50px 90px -40px rgba(0,0,0,.65)}
+.vcap{text-align:center;font-size:13.5px;color:var(--soft);margin:16px auto 0}
+/* méthode */
+.pillars{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:44px}
+.pillar{background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 20px 50px -34px rgba(0,0,0,.45);display:flex;flex-direction:column}
+.pillar img{aspect-ratio:4/3.2;object-fit:cover;width:100%}
+.pillar div{padding:22px 24px 26px}
+.pillar small{font-family:Cinzel,serif;color:var(--gold);font-size:14px}
+.pillar h3{margin:6px 0 10px}
+.pillar p{font-size:15.5px;color:var(--soft);margin:0}
+.day{margin-top:56px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border-top:1px solid var(--line)}
+.day div{padding:18px 16px 0 0}
+.day b{font-family:"Cormorant Garamond",serif;font-size:22px;display:block}
+.day span{font-size:14.5px;color:var(--soft)}
+
+/* galerie */
+.gal-head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:36px}
+.gallery{columns:3 280px;column-gap:14px}
+.gallery figure{margin:0 0 14px;break-inside:avoid;position:relative;overflow:hidden;border-radius:6px}
+.gallery img{width:100%;transition:transform .8s}
+.gallery figure:hover img{transform:scale(1.04)}
+.gallery figcaption{position:absolute;left:0;right:0;bottom:0;padding:30px 16px 12px;font-size:14px;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.65))}
+
+/* avis */
+.reviews{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(28px,5vw,64px);align-items:start}
+.big-quote{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:clamp(30px,3.6vw,44px);line-height:1.15;margin:0 0 18px}
+.stars{color:var(--gold2);letter-spacing:4px;font-size:20px}
+.qs{display:grid;gap:12px}
+.q{border:1px solid rgba(226,182,92,.25);border-radius:8px;padding:18px 20px}
+.q p{font-family:"Cormorant Garamond",serif;font-size:22px;line-height:1.25;margin:0 0 6px;color:#f3ece0}
+.q span{font-size:14px;color:var(--gold2)}
+
+/* podcast */
+.podcast{}
+.phead h3{font-size:clamp(28px,3vw,38px)}
+.phead .soft{margin-top:12px}
+.pods{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:28px}
+.pod .ptxt{border-top-color:var(--gold2)}
+.pod .ptxt small{color:var(--gold2)}
+.pod .ptxt span{color:#bfb3a2}
+
+/* médias */
+.covers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;margin-top:40px}
+.covers:not(.open) .extra{display:none}
+.vcard,.pod{display:flex;flex-direction:column;text-decoration:none;color:inherit;border-radius:12px;overflow:hidden;background:#fff;box-shadow:0 26px 60px -40px rgba(0,0,0,.55);transition:transform .35s}
+.vcard:hover,.pod:hover{transform:translateY(-4px)}
+.thumb{position:relative;display:block;aspect-ratio:16/9;background:#000;overflow:hidden}
+.thumb img{width:100%;height:100%;object-fit:cover;transition:transform .8s}
+.thumb::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.28))}
+.vcard:hover .thumb img,.pod:hover .thumb img{transform:scale(1.05)}
+.yplay{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:68px;height:68px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(180deg,#f0c66b,#b8872f);box-shadow:0 0 0 10px rgba(255,255,255,.22),0 12px 30px rgba(0,0,0,.45);z-index:2;transition:transform .25s}
+.yplay svg{margin-left:3px}
+a:hover .yplay{transform:translate(-50%,-50%) scale(1.08)}
+.yt{position:absolute;left:12px;top:12px;z-index:2;font-size:12.5px;font-weight:700;color:#fff;background:rgba(12,10,8,.65);padding:5px 10px;border-radius:999px}
+.vtxt,.ptxt{display:flex;flex-direction:column;gap:4px;padding:18px 20px 20px;border-top:2px solid var(--gold)}
+.vtxt small,.ptxt small{font-family:Cinzel,serif;font-size:13px;color:var(--gold)}
+.vtxt b,.ptxt b{font-family:"Cormorant Garamond",serif;font-size:28px;line-height:1.1;font-weight:600}
+.vtxt span,.ptxt span{font-size:15px;color:var(--soft)}
+.presvid{padding-bottom:0}
+.hvideo{margin:0 auto}
+.vbig{position:relative;display:block;border-radius:14px;overflow:hidden;aspect-ratio:16/8;background:#000;text-decoration:none;color:#fff;box-shadow:0 0 0 1px rgba(226,182,92,.35),0 50px 90px -50px rgba(0,0,0,.8)}
+.vbig img{width:100%;height:100%;object-fit:cover;opacity:.88;transition:transform .9s}
+.vbig:hover img{transform:scale(1.04)}
+.vbig::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,8,6,.15) 30%,rgba(10,8,6,.85) 100%)}
+.vbig .yplay{left:38%;width:88px;height:88px}
+.pods .pod{background:#17130f;color:#f3ece0;border:1px solid rgba(226,182,92,.3)}
+.pods .pod .yplay{left:auto;top:auto;right:14px;bottom:14px;transform:none;width:56px;height:56px}
+.pods a.pod:hover .yplay{transform:scale(1.08)}
+.pods .pod .yt{background:rgba(23,19,15,.8)}
+.vbtxt{position:absolute;right:0;top:0;bottom:0;width:min(42%,440px);z-index:2;display:flex;flex-direction:column;justify-content:center;gap:8px;padding:28px}
+.vbtxt small{font-family:Cinzel,serif;font-size:14px;color:var(--gold2)}
+.vbtxt b{font-family:"Cormorant Garamond",serif;font-size:clamp(32px,3.6vw,46px);line-height:1.05}
+.vbtxt span{font-size:16px;color:#e6dccb}
+.more{display:flex;flex-direction:column;align-items:center;gap:18px;margin-top:34px}
+.more .btn{color:var(--ink);background:transparent;font:inherit;font-weight:700;cursor:pointer}
+.more .btn span{color:var(--gold)}
+.more p{display:flex;flex-wrap:wrap;gap:8px 14px;justify-content:center;margin:0;max-width:none;font-weight:500;font-size:15px}
+.more a{color:var(--gold);text-underline-offset:4px}
+.more span{color:var(--soft)}
+
+/* équipe */
+.team{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(32px,6vw,90px);align-items:center}
+.tfig{display:grid;gap:0;border-top:1px solid var(--line)}
+.tfig div{padding:24px 0;border-bottom:1px solid var(--line)}
+.tfig b{display:block;font-family:"Cormorant Garamond",serif;font-size:clamp(52px,6vw,76px);line-height:1;color:var(--gold);font-weight:600;white-space:nowrap}
+.tfig span{font-size:15px;color:var(--soft)}
+.letter{margin:24px 0 30px;padding:26px 28px;background:#fff;border-radius:8px;box-shadow:0 24px 60px -40px rgba(0,0,0,.5)}
+.letter p{font-size:16px;color:#2d2620}
+.letter .sig{display:block;font-family:"Cormorant Garamond",serif;font-style:italic;font-size:26px;color:var(--gold)}
+
+/* offre */
+.offer{display:grid;grid-template-columns:.85fr 1.15fr;gap:0;border-radius:10px;overflow:hidden;box-shadow:0 40px 90px -50px rgba(0,0,0,.6);background:#fff}
+.offer>img{width:100%;height:100%;object-fit:cover;min-height:420px;max-height:620px}
+.offer>div{padding:clamp(28px,4vw,52px)}
+.price{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin:16px 0 6px}
+.price b{font-family:"Cormorant Garamond",serif;font-size:clamp(52px,6vw,72px);line-height:1;white-space:nowrap}
+.price span{color:var(--soft);white-space:nowrap}
+.offer ul{list-style:none;padding:0;margin:22px 0 26px;display:grid;gap:10px}
+.offer li{display:grid;grid-template-columns:22px 1fr;gap:10px;font-size:15.5px}
+.fine{font-size:13.5px;color:var(--soft);margin:14px 0 0}
+
+/* contact */
+.contact{position:relative;color:#fff;text-align:center;overflow:hidden}
+.contact>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 35%}
+.contact::before{content:"";position:absolute;inset:0;z-index:1;background:rgba(12,10,8,.78)}
+.contact .wrap{position:relative;z-index:2}
+.contact .mono{height:110px;width:auto;margin:0 auto 26px}
+.contact h2{max-width:20ch;margin:0 auto 16px}
+.contact p{margin:0 auto 30px;color:#e6dccb}
+.contact .cta{justify-content:center}
+.coords{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 30px;margin-top:30px;font-size:15px;color:#e6dccb}
+.coords b{color:var(--gold2);font-weight:500}
+footer{background:var(--night);color:#a99d8c;font-size:13.5px;padding:34px max(5vw,18px);text-align:center}
+footer img{height:70px;width:auto;margin:0 auto 14px}
+
+/* extraits */
+.xgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:40px}
+.xgrid:not(.open) .xmore{display:none}
+.xcard{all:unset;box-sizing:border-box;display:flex;flex-direction:column;cursor:pointer;border-radius:14px;overflow:hidden;background:#17130f;color:#f3ece0;box-shadow:0 0 0 1px rgba(226,182,92,.35),0 30px 60px -40px rgba(0,0,0,.7);transition:transform .35s}
+.xcard:hover{transform:translateY(-4px)}
+.xcard:focus-visible{outline:3px solid var(--gold2);outline-offset:3px}
+.xthumb{position:relative;display:block;aspect-ratio:9/14;overflow:hidden;background:#000}
+.xthumb img{width:100%;height:100%;object-fit:cover;object-position:50% 20%;transition:transform .8s}
+.xcard:hover .xthumb img{transform:scale(1.04)}
+.xthumb::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(12,10,8,.55))}
+.xcard .yplay{top:58%}
+.xcard .yt{top:auto;bottom:10px}
+.xcard:hover .yplay{transform:translate(-50%,-50%) scale(1.08)}
+.xtxt{display:flex;flex-direction:column;gap:4px;padding:16px 18px 18px;border-top:2px solid var(--gold2)}
+.xtxt small{font-family:Cinzel,serif;font-size:13px;color:var(--gold2)}
+.xtxt b{font-family:"Cormorant Garamond",serif;font-size:26px;line-height:1.1;font-weight:600}
+.lb-frame.vert{aspect-ratio:9/16;height:min(80vh,820px);width:auto;margin:0 auto}
+.lb-frame video{position:absolute;inset:0;width:100%;height:100%;background:#000}
+
+/* lecteur vidéo */
+.lb{position:fixed;inset:0;z-index:100;background:rgba(8,6,5,.92);display:grid;place-items:center;padding:max(4vw,14px)}
+.lb[hidden]{display:none}
+.lb-in{position:relative;width:min(1100px,100%)}
+.lb-frame{position:relative;aspect-ratio:16/9;background:#000;border-radius:12px;overflow:hidden;box-shadow:0 0 0 1px rgba(226,182,92,.4),0 40px 90px rgba(0,0,0,.6)}
+.lb-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.lb-x{position:absolute;right:0;top:-56px;width:44px;height:44px;border-radius:50%;border:1px solid rgba(226,182,92,.6);background:transparent;color:#f3ece0;font-size:18px;cursor:pointer}
+.lb-title{margin:14px 0 0;max-width:none;text-align:center;color:#e6dccb;font-family:"Cormorant Garamond",serif;font-size:22px}
+body.lb-open{overflow:hidden}
+
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .9s ease,transform .9s ease}
+.reveal.on{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.hero>img{animation:none}html{scroll-behavior:auto}}
+
+@media(max-width:960px){
+ .top nav{display:none}
+ .intro,.who,.reviews,.offer,.filmgrid,.team{grid-template-columns:minmax(0,1fr)}
+ .pillars, .pods{grid-template-columns:minmax(0,1fr)}
+ .vbig{aspect-ratio:auto}
+ .vbig img{aspect-ratio:16/9;height:auto;opacity:1}
+ .vbig::after{display:none}
+ .vbig .yplay{left:50%;top:28%}
+ .vbtxt{position:static;width:auto;padding:20px 20px 24px;background:#17130f}
+ .day{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:14px}
+ .who .portrait{max-width:440px;margin:0 auto 20px}
+ .offer>img{min-height:300px;max-height:380px}
+}
+@media(max-width:600px){
+ .top img{height:42px}.top .btn{padding:0 16px}
+ .hero{min-height:88vh}
+ .hero::after{background:linear-gradient(180deg,rgba(10,8,6,.55) 0%,rgba(10,8,6,.72) 40%,rgba(10,8,6,.94) 100%)}
+ .hero>img{object-position:62% 30%}
+ .hero .kicker{font-size:13px;line-height:1.5}
+ .hero .kicker::after{display:none}
+ .hero .lead{font-size:17px}
+ .facts .wrap{grid-template-columns:repeat(2,minmax(0,1fr));padding:0}
+ .facts div:nth-child(3){border-left:0}.facts div:nth-child(n+3){border-top:1px solid rgba(226,182,92,.22)}
+ .pillars,.duo,.covers{grid-template-columns:minmax(0,1fr)}
+ .xgrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+ .xtxt{padding:12px 12px 14px}
+ .xtxt b{font-size:20px}
+ .xtxt small{font-size:11.5px}
+ .xcard .yplay{width:52px;height:52px}
+ .lb-frame.vert{height:auto;width:100%;max-height:78vh}
+ .vtxt b,.ptxt b{font-size:25px}
+ .yplay{width:58px;height:58px}
+ .day{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+ .cta .btn{width:100%}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+ <div class="wrap">
+  <a href="#haut" aria-label="Officiant Humour, haut de page"><img src="img/logo.png" alt="Officiant Humour"></a>
+  <nav aria-label="Sections">
+   <a href="#herve">Qui est Hervé</a><a href="#extraits">En vidéo</a><a href="#methode">La méthode</a><a href="#avis">Avis</a><a href="#equipe">L'équipe</a><a href="#formule">Formule</a>
+  </nav>
+  <a class="btn gold" href="https://wa.me/33756854586">Nous contacter</a>
+ </div>
+</header>
+
+<section class="hero" id="haut">
+ <img src="img/herve-foule.jpg" alt="Hervé, micro en main, face aux invités d'un mariage devant un château">
+ <div class="wrap">
+  <p class="kicker">Officiant laïque · Humoriste</p>
+  <h1>Hervé Dipari, l'officiant qui fait <em>rire</em> et <em>émouvoir</em> vos invités</h1>
+  <p class="lead">Douze ans de scène au service d'une seule histoire : celle des mariés. Une cérémonie laïque écrite sur mesure, préparée pendant plusieurs mois et vécue comme un vrai spectacle.</p>
+  <div class="cta">
+   <a class="btn gold" href="#presentation">Voir Hervé en vidéo</a>
+   <a class="btn ghost" href="#herve">Découvrir son profil</a>
+  </div>
+ </div>
+</section>
+
+<section class="facts" aria-label="En chiffres">
+ <div class="wrap">
+  <div><b>5,0 ★</b><span>70 avis Google</span></div>
+  <div><b>12 ans</b><span>de scène</span></div>
+  <div><b>200+</b><span>cérémonies célébrées</span></div>
+  <div><b>100 %</b><span>sur mesure, partout en France</span></div>
+ </div>
+</section>
+
+<section class="band presvid" id="presentation">
+ <div class="wrap hvideo">
+  <a class="vbig" data-yt="Bu9qwUyBWLs" href="https://www.youtube.com/watch?v=Bu9qwUyBWLs" aria-label="Regarder la vidéo de présentation d'Hervé sur YouTube">
+   <img src="img/yt/Bu9qwUyBWLs.jpg" alt="Hervé au pupitre, micro en main, lors d'une cérémonie devant un château">
+   <span class="yplay"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="#1a1208"/></svg></span>
+   <span class="vbtxt"><small>Vidéo de présentation</small><b>Hervé se présente</b><span>Son parcours, sa vision de la cérémonie laïque et sa façon de travailler avec les mariés.</span></span>
+  </a>
+ </div>
+</section>
+
+<section class="band" id="lieux">
+ <div class="wrap intro">
+  <div class="reveal">
+   <p class="kicker">Pour les lieux de réception</p>
+   <h2>Le moment dont <em>vos couples</em> parleront encore</h2>
+   <p class="soft" style="margin-top:20px">La cérémonie laïque est souvent le premier grand moment de la journée chez vous. Avec Hervé, elle devient un temps fort qui donne le ton à toute la fête : les invités rient, les mariés sont émus, et tout le monde se souvient du lieu.</p>
+   <ul>
+    <li><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="none" stroke="#b8872f"/><path d="M6 10.5l2.6 2.6L14.5 7" fill="none" stroke="#b8872f" stroke-width="1.8"/></svg><span><b>Un artiste de scène</b>, à l'aise devant tous les publics, en extérieur comme en salle.</span></li>
+    <li><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="none" stroke="#b8872f"/><path d="M6 10.5l2.6 2.6L14.5 7" fill="none" stroke="#b8872f" stroke-width="1.8"/></svg><span><b>Des couples préparés</b> : accompagnement de plusieurs mois, application mobile de suivi, discours et interventions des proches coachés.</span></li>
+    <li><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="none" stroke="#b8872f"/><path d="M6 10.5l2.6 2.6L14.5 7" fill="none" stroke="#b8872f" stroke-width="1.8"/></svg><span><b>Une cérémonie structurée</b> : déroulé, rituels et coordination pensés en amont, pour un jour J fluide.</span></li>
+    <li><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="none" stroke="#b8872f"/><path d="M6 10.5l2.6 2.6L14.5 7" fill="none" stroke="#b8872f" stroke-width="1.8"/></svg><span><b>Disponible partout en France</b>, déplacements possibles sur toute la saison.</span></li>
+   </ul>
+  </div>
+  <div class="stack2 reveal">
+   <img class="a" src="img/invites-rires.jpg" alt="Invités en éclats de rire pendant qu'Hervé parle au micro">
+   <img class="b" src="img/pupitre-bordeaux.jpg" alt="Hervé au pupitre à côté des mariés souriants">
+  </div>
+ </div>
+</section>
+
+<section class="band dark" id="herve">
+ <div class="wrap who">
+  <figure class="portrait reveal" style="margin:0">
+   <img src="img/herve-arche.jpg" alt="Portrait d'Hervé Dipari sous une arche de fleurs, costume bordeaux et chapeau">
+   <figcaption>Hervé Dipari</figcaption>
+  </figure>
+  <div class="reveal">
+   <p class="kicker">Qui est Hervé ?</p>
+   <h2>Un humoriste qui a trouvé sa plus belle scène : <em>les mariages</em></h2>
+   <p class="soft" style="margin-top:22px">Comédien et humoriste depuis plus de dix ans, Hervé s'est produit sur de nombreuses scènes avant de découvrir la cérémonie laïque en mariant des amis. Il y a trouvé ce qu'il préfère : raconter une histoire vraie, devant un public qui l'aime déjà.</p>
+   <p class="soft">Son métier de scène fait la différence le jour J : le sens du rythme, l'écoute de la salle, l'art de passer d'un fou rire à une larme sans jamais perdre les invités. L'humour part toujours de l'histoire du couple, jamais de blagues toutes faites.</p>
+   <p class="soft">Sous la marque <b style="color:#f3ece0">Officiant Humour</b>, il accompagne chaque couple de la première rencontre jusqu'au « oui ».</p>
+   <div class="duo">
+    <div><b>Le comédien</b><span>12 ans de scène, le timing et la présence d'un pro.</span></div>
+    <div><b>L'auteur</b><span>Chaque cérémonie est écrite à partir de l'histoire du couple.</span></div>
+    <div><b>Le coach</b><span>Vœux, témoins, enfants : chacun est préparé à son moment.</span></div>
+   </div>
+   <blockquote>« Il y a des prestataires qui font leur travail… et il y a ceux qui marquent une vie. »<br><span style="font-family:Manrope;font-style:normal;font-size:14px;color:#e2b65c">Avis client 5 étoiles</span></blockquote>
+  </div>
+ </div>
+</section>
+
+<section class="band" id="extraits">
+ <div class="wrap">
+  <div class="reveal">
+   <p class="kicker">Extraits de cérémonie</p>
+   <h2>Les meilleurs moments, <em>en une minute</em></h2>
+   <p class="soft" style="margin-top:18px">Des extraits courts de vraies cérémonies Officiant Humour. Touchez une vidéo pour la regarder ici.</p>
+  </div>
+  <div class="xgrid" id="xgrid">
+   <button class="xcard reveal" type="button" data-video="video/extraits/01_Pensez_a_l_argent.mp4" data-title="Pensez à l'argent" aria-label="Lire l'extrait : Pensez à l'argent">
+    <span class="xthumb"><img src="img/extraits/01_Pensez_a_l_argent.jpg" alt="" loading="lazy"><span class="yplay"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="#1a1208"/></svg></span><span class="yt">Extrait 01</span></span>
+    <span class="xtxt"><small>Extrait de cérémonie</small><b>Pensez à l'argent</b></span>
+   </button>
+   <button style="display:none" class="xcard reveal xmore" type="button" data-video="video/extraits/02_Coup_de_foudre_Aquim.mp4" data-title="Coup de foudre" aria-label="Lire l'extrait : Coup de foudre">
+    <span class="xthumb"><img src="img/extraits/02_Coup_de_foudre_Aquim.jpg" alt="" loading="lazy"><span class="yplay"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="#1a1208"/></svg></span><span class="yt">Extrait 02</span></span>
+    <span class="xtxt"><small>Extrait de cérémonie</small><b>Coup de foudre</b></span>
+   </button>
+   <button class="xcard reveal" type="button" data-video="video/extraits/03_Silence_radio.mp4" data-title="Silence radio" aria-label="Lire l'extrait : Silence radio">
+    <span class="xthumb"><img src="img/extraits/03_Silence_radio.jpg" alt="" loading="lazy"><span class="yplay"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="#1a1208"/></svg></span><span class="yt">Extrait 03</span></span>
+    <span class="xtxt"><small>Extrait de cérémonie</small><b>Silence radio</b></span>
+   </button>
+   <button style="display:none" class="xcard reveal xmore" type="button" data-video="video/extraits/04_Les_principes_a_la_poubelle.mp4" data-title="Les principes à la poubelle" aria-label="Lire l'extrait : Les principes à la poubelle">
+    <span class="xthumb"><img src="img/extraits/04_Les_principes_a_la_poubelle.jpg" alt="" loading="lazy"><span class="yplay"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="#1a1208"/></svg></span><span class="yt">Extrait 04</span></span>
+    <span class="xtxt"><small>Extrait de cérémonie</small><b>Les principes à la poubelle</b></span>
+   </button>
+   <button class="xcard reveal" type="button" data-video="video/extraits/05_Quatre_enfants_et_un_credit.mp4" data-title="Quatre enfants et un crédit" aria-label="Lire l'extrait : Quatre enfants et un crédit">
+    <span class="xthumb"><img src="img/extraits/05_Quatre_enfants_et_un_credit.jpg" alt="" loading="lazy"><span class="yplay"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="#1a1208"/></svg></span><span class="yt">Extrait 05</span></span>
+    <span class="xtxt"><small>Extrait de cérémonie</small><b>Quatre enfants et un crédit</b></span>
+   </button>
+   <button style="display:none" class="xcard reveal xmore" type="button" data-video="video/extraits/06_Le_cartel_de_l_entrecote.mp4" data-title="Le cartel de l'entrecôte" aria-label="Lire l'extrait : Le cartel de l'entrecôte">
+    <span class="xthumb"><img src="img/extraits/06_Le_cartel_de_l_entrecote.jpg" alt="" loading="lazy"><span class="yplay"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="#1a1208"/></svg></span><span class="yt">Extrait 06</span></span>
+    <span class="xtxt"><small>Extrait de cérémonie</small><b>Le cartel de l'entrecôte</b></span>
+   </button>
+   <button class="xcard reveal" type="button" data-video="video/extraits/07_Meme_le_FBI.mp4" data-title="Même le FBI" aria-label="Lire l'extrait : Même le FBI">
+    <span class="xthumb"><img src="img/extraits/07_Meme_le_FBI.jpg" alt="" loading="lazy"><span class="yplay"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="#1a1208"/></svg></span><span class="yt">Extrait 07</span></span>
+    <span class="xtxt"><small>Extrait de cérémonie</small><b>Même le FBI</b></span>
+   </button>
+   <button style="display:none" class="xcard reveal xmore" type="button" data-video="video/extraits/08_Paiement_refuse.mp4" data-title="Paiement refusé" aria-label="Lire l'extrait : Paiement refusé">
+    <span class="xthumb"><img src="img/extraits/08_Paiement_refuse.jpg" alt="" loading="lazy"><span class="yplay"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="#1a1208"/></svg></span><span class="yt">Extrait 08</span></span>
+    <span class="xtxt"><small>Extrait de cérémonie</small><b>Paiement refusé</b></span>
+   </button>
+   <button class="xcard reveal" type="button" data-video="video/extraits/08_Wedding_planner.mp4" data-title="Wedding planner" aria-label="Lire l'extrait : Wedding planner">
+    <span class="xthumb"><img src="img/extraits/08_Wedding_planner.jpg" alt="" loading="lazy"><span class="yplay"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="#1a1208"/></svg></span><span class="yt">Extrait 09</span></span>
+    <span class="xtxt"><small>Extrait de cérémonie</small><b>Wedding planner</b></span>
+   </button>
+   <button style="display:none" class="xcard reveal xmore" type="button" data-video="video/extraits/08_Zouker_la_machine_a_cafe.mp4" data-title="Zouker la machine à café" aria-label="Lire l'extrait : Zouker la machine à café">
+    <span class="xthumb"><img src="img/extraits/08_Zouker_la_machine_a_cafe.jpg" alt="" loading="lazy"><span class="yplay"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="#1a1208"/></svg></span><span class="yt">Extrait 10</span></span>
+    <span class="xtxt"><small>Extrait de cérémonie</small><b>Zouker la machine à café</b></span>
+   </button>
+   <button class="xcard reveal" type="button" data-video="video/extraits/09_Blinde_ou_Au_Congo.mp4" data-title="Blindé ou au Congo ?" aria-label="Lire l'extrait : Blindé ou au Congo ?">
+    <span class="xthumb"><img src="img/extraits/09_Blinde_ou_Au_Congo.jpg" alt="" loading="lazy"><span class="yplay"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="#1a1208"/></svg></span><span class="yt">Extrait 11</span></span>
+    <span class="xtxt"><small>Extrait de cérémonie</small><b>Blindé ou au Congo ?</b></span>
+   </button>
+   <button class="xcard reveal xmore" type="button" data-video="video/extraits/10_Les_deux.mp4" data-title="Les deux" aria-label="Lire l'extrait : Les deux">
+    <span class="xthumb"><img src="img/extraits/10_Les_deux.jpg" alt="" loading="lazy"><span class="yplay"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="#1a1208"/></svg></span><span class="yt">Extrait 12</span></span>
+    <span class="xtxt"><small>Extrait de cérémonie</small><b>Les deux</b></span>
+   </button>
+   <button class="xcard reveal xmore" type="button" data-video="video/extraits/11_Je_pars.mp4" data-title="Je pars" aria-label="Lire l'extrait : Je pars">
+    <span class="xthumb"><img src="img/extraits/11_Je_pars.jpg" alt="" loading="lazy"><span class="yplay"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="#1a1208"/></svg></span><span class="yt">Extrait 13</span></span>
+    <span class="xtxt"><small>Extrait de cérémonie</small><b>Je pars</b></span>
+   </button>
+   <button style="display:none" class="xcard reveal xmore" type="button" data-video="video/extraits/12_La_barre_de_traction.mp4" data-title="La barre de traction" aria-label="Lire l'extrait : La barre de traction">
+    <span class="xthumb"><img src="img/extraits/12_La_barre_de_traction.jpg" alt="" loading="lazy"><span class="yplay"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="#1a1208"/></svg></span><span class="yt">Extrait 14</span></span>
+    <span class="xtxt"><small>Extrait de cérémonie</small><b>La barre de traction</b></span>
+   </button>
+   <button class="xcard reveal xmore" type="button" data-video="video/extraits/13_Merci_de_me_couper.mp4" data-title="Merci de me couper" aria-label="Lire l'extrait : Merci de me couper">
+    <span class="xthumb"><img src="img/extraits/13_Merci_de_me_couper.jpg" alt="" loading="lazy"><span class="yplay"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="#1a1208"/></svg></span><span class="yt">Extrait 15</span></span>
+    <span class="xtxt"><small>Extrait de cérémonie</small><b>Merci de me couper</b></span>
+   </button>
+   <button style="display:none" class="xcard reveal xmore" type="button" data-video="video/extraits/13_Venez_comme_vous_etes.mp4" data-title="Venez comme vous êtes" aria-label="Lire l'extrait : Venez comme vous êtes">
+    <span class="xthumb"><img src="img/extraits/13_Venez_comme_vous_etes.jpg" alt="" loading="lazy"><span class="yplay"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="#1a1208"/></svg></span><span class="yt">Extrait 16</span></span>
+    <span class="xtxt"><small>Extrait de cérémonie</small><b>Venez comme vous êtes</b></span>
+   </button>
+   <button style="display:none" class="xcard reveal xmore" type="button" data-video="video/extraits/14_Deux_heures_avant.mp4" data-title="Deux heures avant" aria-label="Lire l'extrait : Deux heures avant">
+    <span class="xthumb"><img src="img/extraits/14_Deux_heures_avant.jpg" alt="" loading="lazy"><span class="yplay"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="#1a1208"/></svg></span><span class="yt">Extrait 17</span></span>
+    <span class="xtxt"><small>Extrait de cérémonie</small><b>Deux heures avant</b></span>
+   </button>
+   <button class="xcard reveal xmore" type="button" data-video="video/extraits/14_Mon_steak_a_moi.mp4" data-title="Mon steak à moi" aria-label="Lire l'extrait : Mon steak à moi">
+    <span class="xthumb"><img src="img/extraits/14_Mon_steak_a_moi.jpg" alt="" loading="lazy"><span class="yplay"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="#1a1208"/></svg></span><span class="yt">Extrait 18</span></span>
+    <span class="xtxt"><small>Extrait de cérémonie</small><b>Mon steak à moi</b></span>
+   </button>
+   <button class="xcard reveal xmore" type="button" data-video="video/extraits/16_Chocobon.mp4" data-title="Chocobon" aria-label="Lire l'extrait : Chocobon">
+    <span class="xthumb"><img src="img/extraits/16_Chocobon.jpg" alt="" loading="lazy"><span class="yplay"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="#1a1208"/></svg></span><span class="yt">Extrait 19</span></span>
+    <span class="xtxt"><small>Extrait de cérémonie</small><b>Chocobon</b></span>
+   </button>
+  </div>
+  <div class="more"><button class="btn ghost" id="xmoreBtn" type="button" aria-controls="xgrid" aria-expanded="false">Cliquez ici pour voir plus <span aria-hidden="true">+13</span></button></div>
+ </div>
+</section>
+
+<section class="band" id="medias" style="padding-top:0">
+ <div class="wrap">
+  <div class="reveal">
+   <p class="kicker">Vidéos de cérémonies</p>
+   <h2>Le voir en action, <em>en vrai</em></h2>
+   <p class="soft" style="margin-top:18px">De vraies cérémonies filmées, publiées sur la chaîne YouTube Officiant Humour. Touchez une vidéo pour la regarder.</p>
+  </div>
+  <div class="covers" id="covers">
+   <a class="vcard reveal" data-yt="O4h48Kqll3c" href="https://www.youtube.com/watch?v=O4h48Kqll3c" aria-label="Regarder : Officiant de cérémonie laïque sur YouTube">
+    <span class="thumb"><img src="img/yt/O4h48Kqll3c.jpg" alt="" loading="lazy"><span class="yplay"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="#1a1208"/></svg></span><span class="yt">YouTube</span></span>
+    <span class="vtxt"><small>Officiant Humour</small><b>Officiant de cérémonie laïque</b><span>Un mariage sur la Seine, à Paris</span></span>
+   </a>
+   <a class="vcard reveal" data-yt="cbnSyh65VY4" href="https://www.youtube.com/watch?v=cbnSyh65VY4" aria-label="Regarder : Floriane et Valentin sur YouTube">
+    <span class="thumb"><img src="img/yt/cbnSyh65VY4.jpg" alt="" loading="lazy"><span class="yplay"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="#1a1208"/></svg></span><span class="yt">YouTube</span></span>
+    <span class="vtxt"><small>Cérémonie laïque</small><b>Floriane &amp; Valentin</b><span>Leur cérémonie, du premier mot au « oui »</span></span>
+   </a>
+   <a class="vcard reveal" data-yt="5MS4FiUlptw" href="https://www.youtube.com/watch?v=5MS4FiUlptw" aria-label="Regarder : Adil et Marie sur YouTube">
+    <span class="thumb"><img src="img/yt/5MS4FiUlptw.jpg" alt="" loading="lazy"><span class="yplay"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="#1a1208"/></svg></span><span class="yt">YouTube</span></span>
+    <span class="vtxt"><small>Cérémonie laïque</small><b>Adil &amp; Marie</b><span>Une cérémonie sous chapiteau, entre rires et émotion</span></span>
+   </a>
+   <a class="vcard reveal" data-yt="umiWbA3ry7c" href="https://www.youtube.com/watch?v=umiWbA3ry7c" aria-label="Regarder : Christelle et Nicolas sur YouTube">
+    <span class="thumb"><img src="img/yt/umiWbA3ry7c.jpg" alt="" loading="lazy"><span class="yplay"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="#1a1208"/></svg></span><span class="yt">YouTube</span></span>
+    <span class="vtxt"><small>Mariage</small><b>Christelle &amp; Nicolas</b><span>Même la pluie n'a pas gâché la fête</span></span>
+   </a>
+   <a class="vcard reveal extra" data-yt="IvRAhKxMwM4" href="https://www.youtube.com/watch?v=IvRAhKxMwM4" aria-label="Regarder : Laura et Mathieu sur YouTube">
+    <span class="thumb"><img src="img/yt/IvRAhKxMwM4.jpg" alt="" loading="lazy"><span class="yplay"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="#1a1208"/></svg></span><span class="yt">YouTube</span></span>
+    <span class="vtxt"><small>Cérémonie laïque</small><b>Laura &amp; Mathieu</b><span>L'échange des alliances, avec Hervé au pupitre</span></span>
+   </a>
+   <a class="vcard reveal extra" data-yt="1CiWYNYiFgY" href="https://www.youtube.com/watch?v=1CiWYNYiFgY" aria-label="Regarder : Ketty et Rudy sur YouTube">
+    <span class="thumb"><img src="img/yt/1CiWYNYiFgY.jpg" alt="" loading="lazy"><span class="yplay"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="#1a1208"/></svg></span><span class="yt">YouTube</span></span>
+    <span class="vtxt"><small>Cérémonie laïque</small><b>Ketty &amp; Rudy</b><span>Leur cérémonie laïque par Officiant Humour</span></span>
+   </a>
+   <a class="vcard reveal extra" data-yt="yl8_ru9wT8Q" href="https://www.youtube.com/watch?v=yl8_ru9wT8Q" aria-label="Regarder : Mathilde et Maixent sur YouTube">
+    <span class="thumb"><img src="img/yt/yl8_ru9wT8Q.jpg" alt="" loading="lazy"><span class="yplay"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="#1a1208"/></svg></span><span class="yt">YouTube</span></span>
+    <span class="vtxt"><small>Cérémonie</small><b>Mathilde &amp; Maixent</b><span>Une cérémonie en plein air, toute en émotion</span></span>
+   </a>
+   <a class="vcard reveal extra" data-yt="ht0kbZvMhuA" href="https://www.youtube.com/watch?v=ht0kbZvMhuA" aria-label="Regarder : Officiant de cérémonie laïque sur YouTube">
+    <span class="thumb"><img src="img/yt/ht0kbZvMhuA.jpg" alt="" loading="lazy"><span class="yplay"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="#1a1208"/></svg></span><span class="yt">YouTube</span></span>
+    <span class="vtxt"><small>Officiant Humour</small><b>Officiant de cérémonie laïque</b><span>L'ambiance d'une cérémonie Officiant Humour</span></span>
+   </a>
+  </div>
+  <div class="more">
+   <button class="btn ghost" id="moreBtn" type="button" aria-controls="covers" aria-expanded="false">Voir plus de vidéos <span aria-hidden="true">+4</span></button>
+   <p><a href="https://www.youtube.com/@OfficiantHumour">Toute la chaîne YouTube</a><span>·</span><a href="https://www.instagram.com/officiant_humour/">Instagram @officiant_humour</a></p>
+  </div>
+ </div>
+</section>
+
+<section class="band dark" id="podcast">
+ <div class="wrap podcast">
+  <div class="phead"><p class="kicker">Le podcast</p><h3>Wedding Vibes : les mariés racontent, <em>à notre micro</em></h3><p class="soft">Dans notre podcast, nous recevons des couples que nous avons mariés. Ils racontent leur histoire, leur préparation et leur cérémonie.</p></div>
+  <div class="pods">
+    <a class="pod" data-yt="0MxkupPosHk" href="https://www.youtube.com/watch?v=0MxkupPosHk" aria-label="Écouter l'épisode avec Alexia et Alexandre sur YouTube">
+     <span class="thumb"><img src="img/yt/0MxkupPosHk.jpg" alt="" loading="lazy"><span class="yplay"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="#1a1208"/></svg></span><span class="yt">Épisode 1</span></span>
+     <span class="ptxt"><small>Podcast Wedding Vibes · Avis des mariés</small><b>Alexia &amp; Alexandre</b><span>Nos mariés racontent leur histoire et leur cérémonie, à notre micro.</span></span>
+    </a>
+    <a class="pod" data-yt="0iMnU4htapw" href="https://www.youtube.com/watch?v=0iMnU4htapw" aria-label="Écouter l'épisode avec Floriane et Valentin sur YouTube">
+     <span class="thumb"><img src="img/yt/0iMnU4htapw.jpg" alt="" loading="lazy"><span class="yplay"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="#1a1208"/></svg></span><span class="yt">Épisode 2</span></span>
+     <span class="ptxt"><small>Podcast Wedding Vibes · Avis des mariés</small><b>Floriane &amp; Valentin</b><span>Nos mariés racontent leur histoire et leur cérémonie, à notre micro.</span></span>
+    </a>
+    <a class="pod" data-yt="qiJUeVFIB2A" href="https://www.youtube.com/watch?v=qiJUeVFIB2A" aria-label="Écouter l'épisode avec Jennifer et Andy sur YouTube">
+     <span class="thumb"><img src="img/yt/qiJUeVFIB2A.jpg" alt="" loading="lazy"><span class="yplay"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="#1a1208"/></svg></span><span class="yt">Épisode 3</span></span>
+     <span class="ptxt"><small>Podcast Wedding Vibes · Avis des mariés</small><b>Jennifer &amp; Andy</b><span>Nos mariés racontent leur histoire et leur cérémonie, à notre micro.</span></span>
+    </a>
+  </div>
+ </div>
+</section>
+
+<section class="band" id="methode" style="background:var(--paper2)">
+ <div class="wrap">
+  <div class="reveal">
+   <p class="kicker">La méthode</p>
+   <h2>Le jour J n'est que <em>la partie visible</em></h2>
+   <p class="soft" style="margin-top:18px">Derrière une heure de cérémonie, il y a des mois de travail avec le couple. Hervé s'appuie sur trois piliers.</p>
+  </div>
+  <div class="pillars">
+   <article class="pillar reveal"><img src="img/pupitre-chapeau.jpg" alt="Hervé au pupitre près des mariés"><div><small>Pilier un</small><h3>L'accompagnement</h3><p>Rencontre, échanges réguliers, conseils et une application mobile pour suivre chaque étape de la préparation.</p></div></article>
+   <article class="pillar reveal"><img src="img/rituel-sable.jpg" alt="Les mariés versent le sable lors d'un rituel" style="object-position:50% 40%"><div><small>Pilier deux</small><h3>La structure</h3><p>Le discours, les rituels (sable, vin, signature…), les interventions des proches et la coordination du déroulé.</p></div></article>
+   <article class="pillar reveal"><img src="img/mariee-rit.jpg" alt="Une mariée rit aux éclats pendant la cérémonie" style="object-position:50% 30%"><div><small>Pilier trois</small><h3>L'émotion</h3><p>Le récit sincère de leur histoire, avec de l'humour, des surprises et des moments qui touchent juste.</p></div></article>
+  </div>
+  <div class="day reveal" aria-label="Les étapes">
+   <div><b>Rencontre</b><span>Premier échange offert de 30 minutes</span></div>
+   <div><b>Questionnaires</b><span>Leur histoire, leurs proches, leurs envies</span></div>
+   <div><b>Écriture</b><span>Cérémonie rédigée sur mesure, aide aux vœux</span></div>
+   <div><b>Coaching</b><span>Mariés, témoins et intervenants préparés</span></div>
+   <div><b>Le jour J</b><span>Une heure de cérémonie officiée par Hervé</span></div>
+  </div>
+ </div>
+</section>
+
+<section class="band" id="galerie">
+ <div class="wrap">
+  <div class="gal-head reveal">
+   <div><p class="kicker">En images</p><h2>Des cérémonies qui <em>ressemblent</em> aux mariés</h2></div>
+   <p class="soft" style="margin:0;max-width:40ch">Château, domaine, place de village ou salle d'hiver : chaque lieu devient la scène d'une histoire unique.</p>
+  </div>
+  <div class="gallery">
+   <figure><img src="img/eclat-rire.jpg" alt="Les mariés et Hervé éclatent de rire"><figcaption>Le fou rire partagé</figcaption></figure>
+   <figure><img src="img/deux-mariees.jpg" alt="Deux mariées se tiennent la main dans des fauteuils en rotin"><figcaption>Place de la Mairie, en extérieur</figcaption></figure>
+   <figure><img src="img/micro-invites.jpg" alt="Hervé passe le micro au milieu des invités hilares"><figcaption>Les invités embarqués</figcaption></figure>
+   <figure><img src="img/hiver-baiser.jpg" alt="Le marié embrasse le front de la mariée sous une arche d'hiver"><figcaption>Une cérémonie d'hiver</figcaption></figure>
+   <figure><img src="img/applaudissements.jpg" alt="Des invités émus applaudissent"><figcaption>L'émotion au premier rang</figcaption></figure>
+   <figure><img src="img/rituel-vin.jpg" alt="Caisse de vin et bouteilles préparées pour un rituel du vin"><figcaption>Le rituel du vin</figcaption></figure>
+   <figure><img src="img/signature.jpg" alt="Deux mariées signent leur engagement"><figcaption>La signature</figcaption></figure>
+   <figure><img src="img/invites-sourires.jpg" alt="Rangée d'invités souriants"><figcaption>Un public conquis</figcaption></figure>
+   <figure><img src="img/allee.jpg" alt="La mariée salue le marié au bout de l'allée"><figcaption>L'arrivée dans l'allée</figcaption></figure>
+   <figure><img src="img/hiver-maries.jpg" alt="Les mariés assis sous l'arche, main dans la main"><figcaption>Main dans la main</figcaption></figure>
+   <figure><img src="img/decor.jpg" alt="Colonne fleurie et lanternes au bord de l'allée"><figcaption>Le décor du lieu, mis en valeur</figcaption></figure>
+  </div>
+ </div>
+</section>
+
+<section class="band dark" id="avis">
+ <div class="wrap reviews">
+  <div class="reveal">
+   <p class="kicker">Ils l'ont choisi</p>
+   <p class="stars" aria-label="5 étoiles">★★★★★</p>
+   <p class="big-quote">« Il a raconté notre histoire avec une telle justesse qu'il l'a sublimée. »</p>
+   <p style="color:#e2b65c;font-size:15px">Nanou &amp; Kévin</p>
+   <p class="soft" style="margin-top:26px">Note moyenne de 5,0 sur 70 avis Google.</p>
+  </div>
+  <div class="qs reveal">
+   <div class="q"><p>« Nos invités nous parlent encore de lui, plus d'un mois après notre mariage ! »</p><span>Mag &amp; Fred</span></div>
+   <div class="q"><p>« Mais ce n'était pas juste une heure de notre mariage. »</p><span>Laëtitia &amp; Arthur</span></div>
+   <div class="q"><p>« Une rencontre humaine exceptionnelle. »</p><span>Fatima</span></div>
+   <div class="q"><p>« C'est eux qu'il faut choisir ! »</p><span>Loyce</span></div>
+  </div>
+ </div>
+</section>
+
+
+
+<section class="band" id="equipe">
+ <div class="wrap team">
+  <div class="tfig reveal" aria-label="En chiffres">
+   <div><b>200+</b><span>cérémonies laïques célébrées par Hervé et ses officiants</span></div>
+   <div><b>4</b><span>mariages possibles en simultané</span></div>
+   <div><b>12 ans</b><span>de méthode transmise à son équipe</span></div>
+  </div>
+  <div class="reveal">
+   <p class="kicker">Une date déjà prise ?</p>
+   <h2>Hervé reste <em>l'auteur</em> de chaque cérémonie</h2>
+   <div class="letter">
+    <p>« Si je suis déjà réservé à la date de votre mariage, je pourrai répondre à votre demande grâce à ma propre équipe d'officiants professionnels, entièrement formés à mes méthodes d'interprétation, depuis maintenant 12 ans. Je peux ainsi assurer jusqu'à 4 mariages en simultané.</p>
+    <p>Dans tous les cas, je reste toujours l'organisateur général, l'auteur de votre cérémonie personnalisée et le metteur en scène des nombreuses répétitions avec votre officiant, afin qu'il vous satisfasse pleinement le jour de votre mariage.</p>
+    <p>Actuellement, plus de 200 cérémonies laïques ont été célébrées par moi et mes officiants.</p>
+    <p>Je suis à votre disposition pour parler de votre cérémonie, de votre histoire et de vos envies. Je prendrai le temps de vous découvrir et de vous présenter, en rendez-vous privé, le détail de mon travail, et je répondrai à toutes vos questions. »</p>
+    <span class="sig">Hervé Dipari</span>
+   </div>
+   <a class="btn gold" href="#contact">Demander un rendez-vous privé</a>
+  </div>
+ </div>
+</section>
+
+<section class="band" id="formule" style="background:var(--paper2)">
+ <div class="wrap offer reveal">
+  <img src="img/hiver-portrait.jpg" alt="Les mariés sous une arche fleurie d'hiver" style="object-position:50% 40%">
+  <div>
+   <p class="kicker">La formule</p>
+   <h2>Accompagnement complet</h2>
+   <div class="price"><b>1 600 €</b></div>
+   <ul>
+    <li><span style="color:var(--gold)">✦</span>Rencontre et accompagnement sur mesure sur plusieurs mois</li>
+    <li><span style="color:var(--gold)">✦</span>Application mobile de suivi pour les mariés</li>
+    <li><span style="color:var(--gold)">✦</span>Structure de la cérémonie et choix des rituels</li>
+    <li><span style="color:var(--gold)">✦</span>Écriture personnalisée de la cérémonie</li>
+    <li><span style="color:var(--gold)">✦</span>Coaching des vœux et des intervenants</li>
+    <li><span style="color:var(--gold)">✦</span>Cérémonie d'une heure officiée par Hervé le jour J</li>
+   </ul>
+   <a class="btn gold" href="https://wa.me/33756854586">Vérifier une date</a>
+   <p class="fine">TVA non applicable, art. 293 B du CGI. Places limitées par saison, attribuées dans l'ordre des demandes. Déplacements partout en France.</p>
+  </div>
+ </div>
+</section>
+
+<section class="band contact" id="contact">
+ <img src="img/micro-invites.jpg" alt="">
+ <div class="wrap">
+  <img class="mono" src="img/mono-clair.png" alt="">
+  <h2>Choisissez Officiant Humour <em>pour votre mariage</em></h2>
+  <p>Une date, un lieu, une histoire à raconter ? Officiant Humour vous répond dans la journée et vous offre un premier échange de 30 minutes.</p>
+  <div class="cta">
+   <a class="btn gold" href="https://wa.me/33756854586">Écrire sur WhatsApp</a>
+   <a class="btn ghost" href="mailto:contact@officiant-humour.com">Envoyer un email</a>
+  </div>
+  <div class="coords">
+   <span><b>WhatsApp</b> 07 56 85 45 86</span>
+   <span><b>Email</b> contact@officiant-humour.com</span>
+   <span><b>Instagram</b> <a href="https://www.instagram.com/officiant_humour/" style="color:inherit">@officiant_humour</a></span>
+  </div>
+ </div>
+</section>
+
+<footer>
+ <img src="img/logo-clair.png" alt="Officiant Humour">
+ <div>Officiant Humour · 10 rue de Penthièvre, 75008 Paris · Cérémonies laïques partout en France</div>
+</footer>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Lecture de la vidéo" hidden>
+ <div class="lb-in">
+  <button class="lb-x" id="lbClose" type="button" aria-label="Fermer la vidéo">✕</button>
+  <div class="lb-frame" id="lbFrame"></div>
+  <p class="lb-title" id="lbTitle"></p>
+ </div>
+</div>
+
+<script>
+{
+ const io=new IntersectionObserver(es=>{for(const e of es)if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}},{threshold:.12});
+ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+ const lb=document.getElementById('lb'),lbFrame=document.getElementById('lbFrame'),lbTitle=document.getElementById('lbTitle');
+ const inline=!/claude|anthropic/i.test(location.hostname);
+ const closeLb=()=>{lb.hidden=true;lbFrame.innerHTML='';document.body.classList.remove('lb-open')};
+ document.querySelectorAll('[data-yt]').forEach(a=>a.addEventListener('click',ev=>{
+  if(!inline)return;
+  ev.preventDefault();
+  const id=a.dataset.yt,t=a.querySelector('b');
+  lbFrame.classList.remove('vert');
+  lbFrame.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0&playsinline=1&modestbranding=1" title="Vidéo Officiant Humour" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';
+  lbTitle.textContent=t?t.textContent:'';
+  lb.hidden=false;document.body.classList.add('lb-open');document.getElementById('lbClose').focus();
+ }));
+
+ document.querySelectorAll('[data-video]').forEach(c=>c.addEventListener('click',()=>{
+  lbFrame.classList.add('vert');
+  const v=document.createElement('video');v.src=c.dataset.video;v.controls=true;v.playsInline=true;v.autoplay=true;v.poster=c.querySelector('img').src;
+  lbFrame.replaceChildren(v);lbTitle.textContent=c.dataset.title;
+  lb.hidden=false;document.body.classList.add('lb-open');v.play().catch(()=>{});document.getElementById('lbClose').focus();
+ }));
+ const xg=document.getElementById('xgrid'),xb=document.getElementById('xmoreBtn');
+ xb.addEventListener('click',()=>{
+  const open=xg.classList.toggle('open');xb.setAttribute('aria-expanded',open);
+  xb.innerHTML=open?'Voir moins':'Cliquez ici pour voir plus <span aria-hidden="true">+'+xg.querySelectorAll('.xmore').length+'</span>';
+  if(open)xg.querySelectorAll('.xmore').forEach(e=>e.classList.add('on'));else xg.scrollIntoView({behavior:'smooth',block:'start'});
+ });
+ document.getElementById('lbClose').addEventListener('click',closeLb);
+ lb.addEventListener('click',ev=>{if(ev.target===lb)closeLb()});
+ document.addEventListener('keydown',ev=>{if(ev.key==='Escape'&&!lb.hidden)closeLb()});
+ const covers=document.getElementById('covers'),more=document.getElementById('moreBtn');
+ more.addEventListener('click',()=>{
+  const open=covers.classList.toggle('open');
+  more.setAttribute('aria-expanded',open);
+  more.innerHTML=open?'Voir moins':'Voir plus de vidéos <span aria-hidden="true">+4</span>';
+  if(open)covers.querySelectorAll('.extra').forEach(e=>e.classList.add('on'));
+  else covers.scrollIntoView({behavior:'smooth',block:'start'});
+ });
+
+}
+</script>
+</body>
+</html>
